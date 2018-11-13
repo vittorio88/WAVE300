@@ -118,12 +118,7 @@ you need to have the following firmware files:
 `/lib/firmware/contr_lm.bin`  
 `/lib/firmware/Progmodel_*.bin`  
 
-You can retrieve these from:
-1. your running stock firmare
-2. using fmk (firmware-mod-kit) to extract them from a stock firmware image
-3. Retrieving them from a GPL dump of your image
-
-Check README_FW in /lantiq_fw for help.
+Check README_FW in /lantiq_fw for help in obtaining these files.
 They may need to be renamed, you will see in kernel log if it doesn't find an
 adequate firmware image.
 
