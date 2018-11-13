@@ -84,7 +84,7 @@ We are now ready to build the driver.
 ### Clone WAVE300 git repository
 `cd ~/src`  
 `git clone https://github.com/vittorio88/WAVE300.git`  
-`cd driver`  
+`cd WAVE300/driver`  
 
 ### Set variable to point to cloned OpenWRT SDK repository
 `export BSP_BUILD_ROOT=~/src/openwrt`  
