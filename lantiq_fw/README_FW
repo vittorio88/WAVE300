@@ -4,6 +4,7 @@
 ============================================================
 REVISION
 01	2017-09-24	First issue by Mandrake
+02	2018-11-13	Updated link for firmware dependency files
 
 FIRMWARE
 ============================================================
@@ -15,7 +16,8 @@ The only successful binaries found up to date are embedded into image:
 	TD-W8980_V1_131012.zip
 
 More conveniently, just the interesting binaries have been ripped off:
-	https://ufile.io/yha8i
+	https://ufile.io/yha8i - file does not exist
+	https://1drv.ms/f/s!Au9VmMwLylkznsRfRpWbggOAQkJuOQ - files taken from above firmware (for 5GHz wifi)
 
 In the latter link one can find the folling files:
 	ap_upper.bin
