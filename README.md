@@ -33,7 +33,6 @@ immediatly turn down this git.
 - There is no IP communication, this is likely related to "SOURCE of RX packet not found!" issue.
 
 ## TODO
-- Investigate the kernel panic while initiating 5 GHz devices
 - Diagnose "SOURCE of RX packet not found!" issue which is likely why there is no IP connectivity.
 
 
