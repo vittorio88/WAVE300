@@ -27,7 +27,7 @@ immediatly turn down this git.
 
 ## Status
 - The code has been up-ported to latest OpenWRT trunk using kernel 4.9 or later
-- The code was successfully compiled using Ubuntu 16.04
+- The code was successfully compiled using Ubuntu 16.04 and Ubuntu 18.04 on WSL (Windows Subsystem for Linux)
 - The compiled kernel module is successfully loaded, and network device initiated.
 - The driver communicates with a custom hostapd that contains mtlk primitives.
 - There is no IP communication, this is likely related to "SOURCE of RX packet not found!" issue.
@@ -37,16 +37,15 @@ immediatly turn down this git.
 
 
 ## HOWTO: setup build environment
-* Build using OpenWRT 18.06.1 on Ubuntu 16.04 LTS.
-* The driver did not build on Ubuntu 18.04 for me due to: 
-  error: conflicting types for 'copy_file_range()' which was 
-         introduced by glibc 2.2.7 used in Ubuntu 18.04
+* Build using OpenWRT 18.06.1 on Ubuntu 16.04 LTS or Ubuntu 18.04 for WSL.
 
 
 ### Clone the OpenWRT development environment
 `mkdir ~/src`  
 `cd ~/src`  
 `git clone https://github.com/openwrt/openwrt.git`  
+It is better to switch to current stable release.  
+`git checkout -f v18.06.1`  
 `cd openwrt`  
 
 ### Select target and subtarget
@@ -84,7 +83,7 @@ We are now ready to build the driver.
 ### Clone WAVE300 git repository
 `cd ~/src`  
 `git clone https://github.com/vittorio88/WAVE300.git`  
-`cd driver`  
+`cd WAVE300/driver`  
 
 ### Set variable to point to cloned OpenWRT SDK repository
 `export BSP_BUILD_ROOT=~/src/openwrt`  
@@ -151,7 +150,7 @@ Finally bring up the interface:
 `ifconfig wlan0 up`  
 
 Here is it possible to see the wireless network and connect, yet 
-there is not IP connectivity.
+there is no IP connectivity.
 
 It is also possible to use hostapd if patched with mtlk primitives.
 
