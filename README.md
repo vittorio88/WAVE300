@@ -44,7 +44,7 @@ immediatly turn down this git.
 `mkdir ~/src`  
 `cd ~/src`  
 `git clone https://github.com/openwrt/openwrt.git`  
-It is better to switch to current stable release.
+It is better to switch to current stable release.  
 `git checkout -f v18.06.1`  
 `cd openwrt`  
 
