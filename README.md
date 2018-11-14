@@ -27,26 +27,26 @@ immediatly turn down this git.
 
 ## Status
 - The code has been up-ported to latest OpenWRT trunk using kernel 4.9 or later
-- The code was successfully compiled using Ubuntu 16.04
-- The compiled kernel module is successfully loaded, and network device initiated.
+- The code was successfully compiled using Ubuntu 16.04 and Ubuntu 18.04 on WSL (Windows Subsystem for Linux)
+- The compiled kernel module is successfully loaded, and network device initiated (only for 2.4 GHz devices for now).
 - The driver communicates with a custom hostapd that contains mtlk primitives.
 - There is no IP communication, this is likely related to "SOURCE of RX packet not found!" issue.
 
 ## TODO
+- Investigate the kernel panic while initiating 5 GHz devices
 - Diagnose "SOURCE of RX packet not found!" issue which is likely why there is no IP connectivity.
 
 
 ## HOWTO: setup build environment
-* Build using OpenWRT 18.06.1 on Ubuntu 16.04 LTS.
-* The driver did not build on Ubuntu 18.04 for me due to: 
-  error: conflicting types for 'copy_file_range()' which was 
-         introduced by glibc 2.2.7 used in Ubuntu 18.04
+* Build using OpenWRT 18.06.1 on Ubuntu 16.04 LTS or Ubuntu 18.04 for WSL.
 
 
 ### Clone the OpenWRT development environment
 `mkdir ~/src`  
 `cd ~/src`  
 `git clone https://github.com/openwrt/openwrt.git`  
+It is better to switch to current stable release.
+`git checkout -f v18.06.1`  
 `cd openwrt`  
 
 ### Select target and subtarget
@@ -118,7 +118,7 @@ you need to have the following firmware files:
 `/lib/firmware/contr_lm.bin`  
 `/lib/firmware/Progmodel_*.bin`  
 
-Check README_FW in /lantiq_fw for help in obtaining these files.
+Check README_FW in `/lantiq_fw` for help in obtaining these files.
 They may need to be renamed, you will see in kernel log if it doesn't find an
 adequate firmware image.
 
@@ -146,7 +146,7 @@ Finally bring up the interface:
 `ifconfig wlan0 up`  
 
 Here is it possible to see the wireless network and connect, yet 
-there is not IP connectivity.
+there is no IP connectivity.
 
 It is also possible to use hostapd if patched with mtlk primitives.
 
