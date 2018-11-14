@@ -28,7 +28,7 @@ immediatly turn down this git.
 ## Status
 - The code has been up-ported to latest OpenWRT trunk using kernel 4.9 or later
 - The code was successfully compiled using Ubuntu 16.04 and Ubuntu 18.04 on WSL (Windows Subsystem for Linux)
-- The compiled kernel module is successfully loaded, and network device initiated (only for 2.4 GHz devices for now).
+- The compiled kernel module is successfully loaded, and network device initiated.
 - The driver communicates with a custom hostapd that contains mtlk primitives.
 - There is no IP communication, this is likely related to "SOURCE of RX packet not found!" issue.
 
