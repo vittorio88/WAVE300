@@ -49,7 +49,7 @@ immediatly turn down this git.
 
 ### Install build dependencies
 
-The following is necessary to build driver and OpenWRT.
+The following is necessary to build driver and OpenWRT.  
 `sudo apt install git build-essential libncurses5-dev gawk vim python2.7`
 
 ### Clone the OpenWRT development environment
@@ -73,7 +73,8 @@ For Target Profile chose: TP-Link Archer VR200 v1 ( or your own model )
 
 You may add them using make menuconfig or by manually editing .config
 
-I added the following options to my .config:  
+I added the following options to my .config.  
+
 For lspci:  
 `echo "CONFIG_PACKAGE_pciutils=y" >> .config`
 
@@ -86,7 +87,7 @@ For iwconfig:
 For hostapd:  
 `echo "CONFIG_PACKAGE_libopenssl=y" >> .config`
 
-`make oldconfig`
+`make oldconfig`  
 Press enter alot to accept default options
 
 ### Build OpenWRT
