@@ -30,8 +30,9 @@ immediatly turn down this git.
 
 ## Status
 
-- The code has been up-ported to latest OpenWRT trunk using kernel 4.9 or later
-- The code was successfully compiled using Ubuntu 16.04 and Ubuntu 18.04 on WSL (Windows Subsystem for Linux)
+- The code has been up-ported up to OpenWRT 18.06.5 using kernel 4.9 or later
+- Compilation failed for me on OpenWRT 19.07.0.
+- The code has been successfully compiled using Ubuntu 16.04 and Ubuntu 18.04.03.
 - The compiled kernel module is successfully loaded, and network device initiated.
 - The driver communicates with a custom hostapd that contains mtlk primitives.
 - There is no IP communication, this is likely related to "SOURCE of RX packet not found!" issue.
@@ -42,7 +43,14 @@ immediatly turn down this git.
 
 ## HOWTO: setup build environment
 
-- Build using OpenWRT 18.06.1 on Ubuntu 16.04 LTS or Ubuntu 18.04 for WSL.
+- Build using OpenWRT 18.06.5 Ubuntu 18.04.
+- I strongly recommend completely deleting any old OpenWRT or WAVE300 sources you may,
+  have and start fresh.
+
+### Install build dependencies
+
+The following is necessary to build driver and OpenWRT.
+`sudo apt install git build-essential libncurses5-dev gawk vim python2.7`
 
 ### Clone the OpenWRT development environment
 
@@ -50,12 +58,36 @@ immediatly turn down this git.
 `cd ~/src`  
 `git clone https://github.com/openwrt/openwrt.git`  
 It is better to switch to current stable release.  
-`git checkout -f v18.06.1`  
 `cd openwrt`  
+`git checkout -f v18.06.5`  
 
 ### Select target and subtarget
 
 `make menuconfig`  
+
+For Target System chose: Lantiq
+For Subtarget chose: XRX200
+For Target Profile chose: TP-Link Archer VR200 v1 ( or your own model )
+
+### Add .config options
+
+You may add them using make menuconfig or by manually editing .config
+
+I added the following options to my .config:  
+For lspci:  
+`echo "CONFIG_PACKAGE_pciutils=y" >> .config`
+
+I like vim:  
+`echo "CONFIG_PACKAGE_vim-full=y" >> .config`
+
+For iwconfig:  
+`echo "CONFIG_PACKAGE_wireless-tools=y" >> .config`
+
+For hostapd:  
+`echo "CONFIG_PACKAGE_libopenssl=y" >> .config`
+
+`make oldconfig`
+Press enter alot to accept default options
 
 ### Build OpenWRT
 
@@ -69,20 +101,6 @@ This step is necessary to populate toolchain and kernel directories
 `make package/libnl/{clean,compile} V=99`  
 
 Note: libnl-tiny does not work by default
-
-I also added the following options to my .config :
-
-For lspci:
-`CONFIG_PACKAGE_pciutils=y`  
-
-I like vim:
-`CONFIG_PACKAGE_vim-full=y`  
-
-For iwconfig:
-`CONFIG_PACKAGE_wireless-tools=y`  
-
-For hostapd:
-`CONFIG_PACKAGE_libopenssl=y`  
 
 ## HOWTO: Build driver
 
@@ -104,7 +122,7 @@ We are now ready to build the driver.
 
 You should see the classical blue screen menu.  
 
-1. Choose your target platform
+Choose your target platform
 
 ugw5.1-vrx288 has been more thoroughly tested and will be used as example for the rest of the document.  
 
